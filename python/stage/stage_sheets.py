@@ -36,7 +36,10 @@ def hop_run() -> str:
     env = os.environ.get("HOP_RUN")
     if env and os.path.isfile(env):
         return env
-    names = ("hop-run.bat", "hop-run.cmd", "hop-run.sh")
+    if sys.platform.startswith("win"):
+        names = ("hop-run.bat", "hop-run.cmd", "hop-run.sh")
+    else:
+        names = ("hop-run.sh", "hop-run.bat", "hop-run.cmd")
     roots: list[Path] = []
     hop_home = os.environ.get("HOP_HOME")
     if hop_home:
@@ -219,7 +222,8 @@ def main() -> int:
                     columnas.append(ident)
                 if desconocida:
                     continue
-                data_row = int(spec["header_row"]) + 1
+                # Hop no escribe la primera fila del rango. Esa fila es la de códigos.
+                data_row = int(spec["header_row"])
                 hpl = run_dir / f"{table}_{cod.replace(' ', '_')}.hpl"
                 write_pipeline(
                     hpl,

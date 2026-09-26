@@ -2,6 +2,8 @@
 
 Divulgación progresiva desde [`AGENTS.md`](../../AGENTS.md).
 
+Linux usa el entorno de datos `local`. Windows usa `remote`.
+
 ## Linux
 
 - Apache Hop en `~/apps/hop` (GUI: `~/apps/hop/hop-gui.sh`).

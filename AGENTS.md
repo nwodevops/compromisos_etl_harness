@@ -45,6 +45,7 @@ El proyecto Hop es `compromisos_etl_harness`. H2 se comparte con informes: puert
 2. **Sin secretos** en git (`project-config.json` es generado).
 3. **Sin `${VAR}` literal** en logs Hop = variable mal definida.
 4. `logica/` no abre conexiones. I/O en `python/io/`.
+5. **Linux = entorno `local`. Windows = entorno `remote`.** En esta máquina: `./switch-env.sh local` y `hop-run.sh`. En Windows: `.\switch-env.ps1 remote` y `hop-run.bat`. `-r local` de Hop es el motor de ejecución, no el entorno de datos.
 
 ## Nuevo proyecto
 

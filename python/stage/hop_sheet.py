@@ -42,7 +42,10 @@ def write_pipeline(
     table: str,
     credential: Path,
 ) -> None:
-    """columns = nombres ya sanitizados, en el orden de la hoja."""
+    """columns = nombres ya sanitizados, en el orden de la hoja.
+
+    data_row es la fila de códigos. Hop la descarta y carga desde la siguiente.
+    """
     if data_row < 1:
         raise ValueError(f"data_row inválida: {data_row}")
     rango = f"'{worksheet}'!A{data_row}:AZ"
