@@ -35,14 +35,14 @@
       <work_directory>${PROJECT_HOME}</work_directory>
       <arguments/>
       <arg_from_previous>N</arg_from_previous>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
+      <set_logfile>Y</set_logfile>
+      <logfile>${PROJECT_HOME}/log/reset_h2</logfile>
+      <logext>log</logext>
+      <add_date>Y</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <exec_per_row>N</exec_per_row>
-      <set_append_logfile>N</set_append_logfile>
+      <set_append_logfile>Y</set_append_logfile>
       <insertScript>Y</insertScript>
       <script>@echo off
 cd /d "%PROJECT_HOME%"
@@ -62,14 +62,14 @@ call h2\scripts\reset_and_create.bat
       <work_directory>${PROJECT_HOME}</work_directory>
       <arguments/>
       <arg_from_previous>N</arg_from_previous>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
+      <set_logfile>Y</set_logfile>
+      <logfile>${PROJECT_HOME}/log/create_stg</logfile>
+      <logext>log</logext>
+      <add_date>Y</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <exec_per_row>N</exec_per_row>
-      <set_append_logfile>N</set_append_logfile>
+      <set_append_logfile>Y</set_append_logfile>
       <insertScript>Y</insertScript>
       <script>@echo off
 cd /d "%PROJECT_HOME%"
@@ -91,14 +91,14 @@ if not exist "%PY%" set "PY=python"
       <work_directory>${PROJECT_HOME}</work_directory>
       <arguments/>
       <arg_from_previous>N</arg_from_previous>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
+      <set_logfile>Y</set_logfile>
+      <logfile>${PROJECT_HOME}/log/stage_sheets</logfile>
+      <logext>log</logext>
+      <add_date>Y</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <exec_per_row>N</exec_per_row>
-      <set_append_logfile>N</set_append_logfile>
+      <set_append_logfile>Y</set_append_logfile>
       <insertScript>Y</insertScript>
       <script>@echo off
 cd /d "%PROJECT_HOME%"
@@ -120,14 +120,14 @@ if not exist "%PY%" set "PY=python"
       <work_directory>${PROJECT_HOME}</work_directory>
       <arguments/>
       <arg_from_previous>N</arg_from_previous>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
+      <set_logfile>Y</set_logfile>
+      <logfile>${PROJECT_HOME}/log/run_python</logfile>
+      <logext>log</logext>
+      <add_date>Y</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <exec_per_row>N</exec_per_row>
-      <set_append_logfile>N</set_append_logfile>
+      <set_append_logfile>Y</set_append_logfile>
       <insertScript>Y</insertScript>
       <script>@echo off
 cd /d "%PROJECT_HOME%"

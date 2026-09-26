@@ -1,5 +1,6 @@
 project-config.json
 client_secret.json
+docs/credenciales/
 *.xlsx
 .~*
 h2/sql/02_stg.sql

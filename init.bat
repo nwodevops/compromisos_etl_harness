@@ -18,28 +18,27 @@ echo ==^> Harness Windows: entorno %ENV%
 set "PY=%~dp0.venv\Scripts\python.exe"
 if not exist "%PY%" set "PY=python"
 
+REM Orden: HOP_RUN > HOP_HOME > D:\Eder\hop > %USERPROFILE%\apps\hop > PATH.
+REM Forma plana a proposito: en un bloque, un "else if exist" encadenado hace que
+REM cmd ligue el else final al "if defined HOP_HOME" externo y se salte la cadena.
 if not defined HOP_RUN (
-  if defined HOP_HOME if exist "%HOP_HOME%\hop-run.bat" (
-    set "HOP_RUN=%HOP_HOME%\hop-run.bat"
-  ) else if exist "D:\Eder\hop\hop-run.bat" (
-    set "HOP_RUN=D:\Eder\hop\hop-run.bat"
-  ) else if exist "%USERPROFILE%\apps\hop\hop-run.bat" (
-    set "HOP_RUN=%USERPROFILE%\apps\hop\hop-run.bat"
-  ) else if exist "%USERPROFILE%\apps\hop\hop-run.cmd" (
-    set "HOP_RUN=%USERPROFILE%\apps\hop\hop-run.cmd"
-  ) else (
-    set "HOP_RUN=hop-run"
-  )
+  if defined HOP_HOME if exist "%HOP_HOME%\hop-run.bat" set "HOP_RUN=%HOP_HOME%\hop-run.bat"
+  if not defined HOP_RUN if exist "D:\Eder\hop\hop-run.bat" set "HOP_RUN=D:\Eder\hop\hop-run.bat"
+  if not defined HOP_RUN if exist "%USERPROFILE%\apps\hop\hop-run.bat" set "HOP_RUN=%USERPROFILE%\apps\hop\hop-run.bat"
+  if not defined HOP_RUN if exist "%USERPROFILE%\apps\hop\hop-run.cmd" set "HOP_RUN=%USERPROFILE%\apps\hop\hop-run.cmd"
+  if not defined HOP_RUN set "HOP_RUN=hop-run"
 )
 
-if /I "%HOP_RUN%"=="hop-run" (
+REM Delayed expansion: HOP_RUN se resolvio dentro del bloque anterior, asi que
+REM %HOP_RUN% (expandido en tiempo de parseo) todavia estaria vacio aqui.
+if /I "!HOP_RUN!"=="hop-run" (
   where hop-run >nul 2>&1
   if errorlevel 1 (
     echo FAIL: hop-run.bat no encontrado ^(HOP_RUN, HOP_HOME, D:\Eder\hop o %%USERPROFILE%%\apps\hop^)
     exit /b 1
   )
-) else if not exist "%HOP_RUN%" (
-  echo FAIL: no se encuentra %HOP_RUN%
+) else if not exist "!HOP_RUN!" (
+  echo FAIL: no se encuentra !HOP_RUN!
   exit /b 1
 )
 

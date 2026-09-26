@@ -25,10 +25,13 @@ function Test-Placeholder {
 }
 
 if (-not (Test-Path -LiteralPath $projFile)) {
+    # Comillas SIMPLES a proposito: "${PROJECT_HOME}" es sintaxis de interpolacion
+    # de PowerShell y con comillas dobles se comeria los literales ${VAR} de Hop,
+    # dejando metadataBaseFolder = "/metadata" y el proyecto sin conexiones.
     $proj = [ordered]@{
-        metadataBaseFolder = "${PROJECT_HOME}/metadata"
-        unitTestsBasePath  = "${PROJECT_HOME}"
-        dataSetsCsvFolder  = "${PROJECT_HOME}/datasets"
+        metadataBaseFolder = '${PROJECT_HOME}/metadata'
+        unitTestsBasePath  = '${PROJECT_HOME}'
+        dataSetsCsvFolder  = '${PROJECT_HOME}/datasets'
         enforcingExecutionInHome = $true
         parentProjectName = "default"
         config = [ordered]@{ variables = @() }
@@ -42,6 +45,9 @@ if (-not (Test-Path -LiteralPath $projFile)) {
 $existing = @{}
 if ($proj.config.variables) {
     foreach ($v in $proj.config.variables) {
+        # Un project-config.json generado con placeholders puede traer entradas
+        # name/value nulas; ContainsKey(null) revienta.
+        if ([string]::IsNullOrWhiteSpace($v.name)) { continue }
         if (-not $existing.ContainsKey($v.name)) { $existing[$v.name] = $v }
     }
 }
