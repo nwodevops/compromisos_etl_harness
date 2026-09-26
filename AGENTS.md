@@ -20,11 +20,24 @@ ETL **Apache Hop + H2 in-memory + Python**. Arquitectura: [`docs/arquitectura.md
 
 ## Inicio rápido
 
+**Linux**
+
 ```bash
 ./switch-env.sh local
 ./init.sh
 ~/apps/hop/hop-gui.sh   # → wf_main.hwf
 ```
+
+**Windows** (misma carpeta que `etl_informes_harness`, mismo `hop-run.bat`)
+
+```powershell
+.\switch-env.ps1 remote
+.\init.bat                         # consola; default remote
+# Programador de tareas → run_wf_main.bat
+# Hop GUI → wf_main_windows.hwf
+```
+
+El proyecto Hop es `compromisos_etl_harness`. H2 se comparte con informes: puerto `9092`, base `mem:csep`. No correr las dos a la vez: el reset hace `DROP ALL OBJECTS`.
 
 ## Reglas críticas
 

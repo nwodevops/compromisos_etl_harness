@@ -8,12 +8,28 @@ Divulgación progresiva desde [`AGENTS.md`](../../AGENTS.md).
 - Java en PATH (H2).
 - Python: `.venv/` + `python/requirements.txt`.
 
+## Windows
+
+Misma máquina y el mismo `hop-run.bat` que `etl_informes_harness` (`D:\Eder\hop` o `%USERPROFILE%\apps\hop`). El repo va al lado, no dentro del de informes. Registrar el proyecto Hop `compromisos_etl_harness`.
+
+```powershell
+.\switch-env.ps1 remote
+.\init.bat
+# Programador de tareas → run_wf_main.bat   (no cambia el entorno; log en logs\wf_main_YYYYMMDD.log)
+# Hop GUI → wf_main_windows.hwf
+```
+
+`init.bat [local|remote]` aplica `switch-env.ps1` en cada arranque (default `remote`). `--runconfig=local` es el motor de Hop, no el entorno de datos.
+
+H2 compartido: puerto `9092`, base `mem:csep`, tarea `H2_SERVICE_MEM_CSEP`. Si el puerto ya escucha, no se levanta otro server. No solapar la corrida con informes.
+
 ## Workflows
 
 | Workflow | Uso |
 |---|---|
-| `workflows/wf_create_stg.hwf` | Diseño: Reset H2 → Python STG → H2 vivo en 9092 |
-| `workflows/wf_main.hwf` | Corrida: Reset → STG → `pl_demo` → Python |
+| `workflows/wf_create_stg.hwf` | Diseño (Linux): Reset H2 → Python STG → H2 vivo en 9092 |
+| `workflows/wf_main.hwf` | Corrida Linux: Reset → STG → Sheets → Python |
+| `workflows/wf_main_windows.hwf` | Corrida Windows (`cmd`): los mismos cuatro pasos |
 
 Smoke sin Hop:
 
@@ -37,7 +53,7 @@ Smoke sin Hop:
 ## Variables
 
 - Fuente única: `project-config.json` → `config.variables`.
-- Entorno: `./switch-env.sh local|remote` (copia `environments/*.json`).
+- Entorno: `./switch-env.sh local|remote` o `.\switch-env.ps1 local|remote`. Si la plantilla trae `<...>`, el `.ps1` conserva el valor real ya escrito en `project-config.json`.
 - `${VAR}` literal en log = variable no definida o proyecto Hop equivocado.
 
 ## Secretos

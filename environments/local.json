@@ -28,12 +28,12 @@
     {
       "name": "DB_H2_PASSWORD",
       "value": "csep",
-      "description": "Password H2"
+      "description": "Password H2 (local demo)"
     },
     {
       "name": "DB_ORA_SISUD_URL",
       "value": "jdbc:oracle:thin:@//<HOST>:<PUERTO>/<SERVICE>",
-      "description": "Oracle fuente REMOTO"
+      "description": "Oracle fuente — completar"
     },
     {
       "name": "DB_ORA_SISUD_HOST",
@@ -63,7 +63,7 @@
     {
       "name": "DB_ORA_REPO_URL",
       "value": "jdbc:oracle:thin:@//<HOST>:<PUERTO>/<SERVICE>",
-      "description": "Oracle destino REMOTO"
+      "description": "Oracle destino legado — completar"
     },
     {
       "name": "DB_ORA_REPO_HOST",
@@ -92,62 +92,62 @@
     },
     {
       "name": "DB_ORA_DW_URL",
-      "value": "jdbc:oracle:thin:@//<HOST>:<PUERTO>/<SERVICE>",
-      "description": "Oracle DW REMOTO"
+      "value": "jdbc:oracle:thin:@//localhost:1524/BD_CURSOR",
+      "description": "Oracle DW OUTPUT local (APP / BD_CURSOR)"
     },
     {
       "name": "DB_ORA_DW_HOST",
-      "value": "<HOST>",
+      "value": "localhost",
       "description": "Host Oracle DW"
     },
     {
       "name": "DB_ORA_DW_PORT",
-      "value": "<PUERTO>",
+      "value": "1524",
       "description": "Puerto Oracle DW"
     },
     {
       "name": "DB_ORA_DW_DATABASE",
-      "value": "<SERVICE>",
+      "value": "BD_CURSOR",
       "description": "Service Oracle DW"
     },
     {
       "name": "DB_ORA_DW_USERNAME",
-      "value": "<USUARIO>",
+      "value": "app",
       "description": "Usuario Oracle DW"
     },
     {
       "name": "DB_ORA_DW_PASSWORD",
-      "value": "<PASSWORD>",
+      "value": "app2026",
       "description": "Password Oracle DW"
     },
     {
       "name": "DB_MYSQL_DW_URL",
-      "value": "jdbc:mysql://<HOST>:<PUERTO>/<DATABASE>",
-      "description": "JDBC URL MySQL DW mirror"
+      "value": "jdbc:mysql://localhost:3307/gappsdb",
+      "description": "MySQL DW OUTPUT local"
     },
     {
       "name": "DB_MYSQL_DW_HOST",
-      "value": "<HOST>",
+      "value": "localhost",
       "description": "Host MySQL DW"
     },
     {
       "name": "DB_MYSQL_DW_PORT",
-      "value": "<PUERTO>",
+      "value": "3307",
       "description": "Puerto MySQL DW"
     },
     {
       "name": "DB_MYSQL_DW_DATABASE",
-      "value": "<DATABASE>",
-      "description": "Base MySQL DW"
+      "value": "gappsdb",
+      "description": "Database MySQL DW"
     },
     {
       "name": "DB_MYSQL_DW_USERNAME",
-      "value": "<USUARIO>",
+      "value": "gapps",
       "description": "Usuario MySQL DW"
     },
     {
       "name": "DB_MYSQL_DW_PASSWORD",
-      "value": "<PASSWORD>",
+      "value": "gapps2026",
       "description": "Password MySQL DW"
     }
   ]

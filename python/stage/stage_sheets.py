@@ -32,13 +32,30 @@ RETRY_SLEEP = 8
 
 
 def hop_run() -> str:
+    """hop-run del mismo Hop que informes: HOP_RUN, HOP_HOME, D:\\Eder\\hop, ~/apps/hop."""
     env = os.environ.get("HOP_RUN")
     if env and os.path.isfile(env):
         return env
-    candidate = Path.home() / "apps" / "hop" / "hop-run.sh"
-    if candidate.is_file():
-        return str(candidate)
-    raise SystemExit("no se encontró hop-run.sh (define HOP_RUN)")
+    names = ("hop-run.bat", "hop-run.cmd", "hop-run.sh")
+    roots: list[Path] = []
+    hop_home = os.environ.get("HOP_HOME")
+    if hop_home:
+        roots.append(Path(hop_home))
+    roots.append(Path(r"D:\Eder\hop"))
+    roots.append(Path.home() / "apps" / "hop")
+    for root in roots:
+        for name in names:
+            candidate = root / name
+            if candidate.is_file():
+                return str(candidate)
+    raise SystemExit("no se encontró hop-run (define HOP_RUN)")
+
+
+def hop_cmd(hop: str, root: Path, pipeline: Path) -> list[str]:
+    args = ["-j", root.name, "-f", str(pipeline), "-r", "local"]
+    if hop.lower().endswith((".bat", ".cmd")):
+        return ["cmd", "/c", hop, *args]
+    return [hop, *args]
 
 
 def ident_por_norma(columnas: list[str]) -> dict[str, str]:
@@ -106,7 +123,7 @@ def marcar_fuente(
 
 def correr_hop(hop: str, root: Path, pipeline: Path, label: str) -> str:
     """Devuelve 'ok' o 'vacia'. Una hoja sin filas hace fallar a Hop con values=null."""
-    cmd = [hop, "-j", root.name, "-f", str(pipeline), "-r", "local"]
+    cmd = hop_cmd(hop, root, pipeline)
     attempt = 1
     while True:
         proc = subprocess.run(cmd, cwd=str(root), capture_output=True, text=True)
