@@ -1,0 +1,22 @@
+# Manifiesto de fuentes — copiar a inputs.yaml en la raíz del proyecto.
+# Python (create_stg.py) solo DDL STG_*; Hop extrae filas.
+# Types: oracle | sheets | excel.
+
+sources:
+  - stg_table: STG_ORA_EJEMPLO
+    type: oracle
+    connection: oracle_sisud
+    object: OWNER.VW_EJEMPLO
+
+  - stg_table: STG_GS1_EJEMPLO
+    type: sheets
+    spreadsheet_key: ${SPREADSHEET_KEY_GS1}
+    worksheet: "Hoja 1"
+    types: varchar
+
+  - stg_table: STG_XLS_EJEMPLO
+    type: excel
+    path: input_excel/ejemplo.xlsx
+    worksheet: "Datos"
+    header_row: 3
+    types: varchar

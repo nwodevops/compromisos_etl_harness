@@ -1,0 +1,45 @@
+# Manifiesto de fuentes STG. create_stg.py crea el DDL; python/stage/stage_sheets.py carga filas.
+# Catálogo: docs/inputs/fuentes_sheets.json (fila de códigos de cada pestaña).
+
+sources:
+  - stg_table: STG_SEDE_REUNIONES
+    type: sheets
+    familia: sede
+    pestana: reuniones
+    catalog: docs/inputs/fuentes_sheets.json
+    types: varchar
+
+  - stg_table: STG_SEDE_ACUERDOS
+    type: sheets
+    familia: sede
+    pestana: acuerdos
+    catalog: docs/inputs/fuentes_sheets.json
+    types: varchar
+
+  - stg_table: STG_SEDE_DATOS
+    type: sheets
+    familia: sede
+    pestana: datos
+    catalog: docs/inputs/fuentes_sheets.json
+    types: varchar
+
+  - stg_table: STG_OD_REUNIONES
+    type: sheets
+    familia: od
+    pestana: reuniones
+    catalog: docs/inputs/fuentes_sheets.json
+    types: varchar
+
+  - stg_table: STG_OD_ACUERDOS
+    type: sheets
+    familia: od
+    pestana: acuerdos
+    catalog: docs/inputs/fuentes_sheets.json
+    types: varchar
+
+  - stg_table: STG_OD_DATOS
+    type: sheets
+    familia: od
+    pestana: datos
+    catalog: docs/inputs/fuentes_sheets.json
+    types: varchar

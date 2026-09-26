@@ -1,0 +1,35 @@
+{
+  "virtualPath": "",
+  "rdbms": {
+    "H2": {
+      "sshTunnelPort": "22",
+      "sshTunnelUsePrivateKey": false,
+      "databaseName": "${DB_H2_DATABASE}",
+      "pluginId": "H2",
+      "sshTunnelEnabled": false,
+      "accessType": 0,
+      "sshTunnelUsername": "",
+      "hostname": "${DB_H2_HOST}",
+      "password": "${DB_H2_PASSWORD}",
+      "pluginName": "H2",
+      "port": "${DB_H2_PORT}",
+      "sshTunnelHost": "",
+      "attributes": {
+        "SUPPORTS_TIMESTAMP_DATA_TYPE": "Y",
+        "QUOTE_ALL_FIELDS": "N",
+        "SUPPORTS_BOOLEAN_DATA_TYPE": "Y",
+        "FORCE_IDENTIFIERS_TO_LOWERCASE": "N",
+        "PRESERVE_RESERVED_WORD_CASE": "Y",
+        "SQL_CONNECT": "",
+        "FORCE_IDENTIFIERS_TO_UPPERCASE": "N",
+        "PREFERRED_SCHEMA_NAME": "PUBLIC"
+      },
+      "manualUrl": "${DB_H2_URL}",
+      "sshTunnelPassphrase": "Encrypted ",
+      "sshTunnelPassword": "Encrypted ",
+      "sshTunnelPrivateKeyFile": "",
+      "username": "${DB_H2_USERNAME}"
+    }
+  },
+  "name": "h2"
+}

@@ -1,0 +1,124 @@
+{
+  "variables": [
+    {
+      "name": "DB_H2_URL",
+      "value": "jdbc:h2:tcp://localhost:9092/mem:csep;DB_CLOSE_DELAY=-1;MODE=Oracle;DATABASE_TO_UPPER=TRUE;DEFAULT_NULL_ORDERING=HIGH;AUTO_RECONNECT=TRUE",
+      "description": "JDBC URL H2 in-memory"
+    },
+    {
+      "name": "DB_H2_HOST",
+      "value": "localhost",
+      "description": "Host H2"
+    },
+    {
+      "name": "DB_H2_PORT",
+      "value": "9092",
+      "description": "Puerto H2"
+    },
+    {
+      "name": "DB_H2_DATABASE",
+      "value": "mem:csep",
+      "description": "Base H2"
+    },
+    {
+      "name": "DB_H2_USERNAME",
+      "value": "sa",
+      "description": "Usuario H2"
+    },
+    {
+      "name": "DB_H2_PASSWORD",
+      "value": "csep",
+      "description": "Password H2"
+    },
+    {
+      "name": "DB_ORA_SISUD_URL",
+      "value": "jdbc:oracle:thin:@//<HOST>:<PUERTO>/<SERVICE>",
+      "description": "Oracle fuente REMOTO"
+    },
+    {
+      "name": "DB_ORA_SISUD_HOST",
+      "value": "<HOST>",
+      "description": "Host Oracle fuente"
+    },
+    {
+      "name": "DB_ORA_SISUD_PORT",
+      "value": "<PUERTO>",
+      "description": "Puerto Oracle fuente"
+    },
+    {
+      "name": "DB_ORA_SISUD_DATABASE",
+      "value": "<SERVICE>",
+      "description": "Service Oracle fuente"
+    },
+    {
+      "name": "DB_ORA_SISUD_USERNAME",
+      "value": "<USUARIO>",
+      "description": "Usuario Oracle fuente"
+    },
+    {
+      "name": "DB_ORA_SISUD_PASSWORD",
+      "value": "<PASSWORD>",
+      "description": "Password Oracle fuente"
+    },
+    {
+      "name": "DB_ORA_REPO_URL",
+      "value": "jdbc:oracle:thin:@//<HOST>:<PUERTO>/<SERVICE>",
+      "description": "Oracle destino REMOTO"
+    },
+    {
+      "name": "DB_ORA_REPO_HOST",
+      "value": "<HOST>",
+      "description": "Host Oracle destino"
+    },
+    {
+      "name": "DB_ORA_REPO_PORT",
+      "value": "<PUERTO>",
+      "description": "Puerto Oracle destino"
+    },
+    {
+      "name": "DB_ORA_REPO_DATABASE",
+      "value": "<SERVICE>",
+      "description": "Service Oracle destino"
+    },
+    {
+      "name": "DB_ORA_REPO_USERNAME",
+      "value": "<USUARIO>",
+      "description": "Usuario Oracle destino"
+    },
+    {
+      "name": "DB_ORA_REPO_PASSWORD",
+      "value": "<PASSWORD>",
+      "description": "Password Oracle destino"
+    },
+    {
+      "name": "DB_ORA_DW_URL",
+      "value": "jdbc:oracle:thin:@//<HOST>:<PUERTO>/<SERVICE>",
+      "description": "Oracle DW REMOTO"
+    },
+    {
+      "name": "DB_ORA_DW_HOST",
+      "value": "<HOST>",
+      "description": "Host Oracle DW"
+    },
+    {
+      "name": "DB_ORA_DW_PORT",
+      "value": "<PUERTO>",
+      "description": "Puerto Oracle DW"
+    },
+    {
+      "name": "DB_ORA_DW_DATABASE",
+      "value": "<SERVICE>",
+      "description": "Service Oracle DW"
+    },
+    {
+      "name": "DB_ORA_DW_USERNAME",
+      "value": "<USUARIO>",
+      "description": "Usuario Oracle DW"
+    },
+    {
+      "name": "DB_ORA_DW_PASSWORD",
+      "value": "<PASSWORD>",
+      "description": "Password Oracle DW"
+    }
+  ]
+}

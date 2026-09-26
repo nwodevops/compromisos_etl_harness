@@ -1,0 +1,31 @@
+{
+  "project": "mi_etl",
+  "reglas": {
+    "una_feature_activa": "Como máximo un item con status in_progress",
+    "verificacion": "./init.sh debe terminar en HARNESS OK",
+    "trazabilidad": "Implementador escribe progress/impl_<id>.md"
+  },
+  "features": [
+    {
+      "id": "fase-1-entorno",
+      "title": "Hop + H2 + Python + harness",
+      "status": "done",
+      "criterio": "CHECKPOINTS.md#fase-1",
+      "doc": "README.md"
+    },
+    {
+      "id": "fase-2-fuentes-stg",
+      "title": "inputs.yaml + pl_stage_* en Hop",
+      "status": "done",
+      "criterio": "CHECKPOINTS.md#fase-2",
+      "doc": ".agents/skills/hop-python-etl/inputs.example.yaml"
+    },
+    {
+      "id": "fase-3-logica",
+      "title": "logica/ + salida Excel",
+      "status": "done",
+      "criterio": "CHECKPOINTS.md#fase-3",
+      "doc": "python/CONTRATO.md"
+    }
+  ]
+}
