@@ -26,6 +26,13 @@
       "status": "done",
       "criterio": "CHECKPOINTS.md#fase-3",
       "doc": "python/CONTRATO.md"
+    },
+    {
+      "id": "fase-4-pk-oficina",
+      "title": "TX_OFICINA y PK_OFICINA",
+      "status": "done",
+      "criterio": "CHECKPOINTS.md#fase-4",
+      "doc": "docs/inputs/oficinas.yaml"
     }
   ]
 }

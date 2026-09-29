@@ -36,6 +36,8 @@ TABLA_COMENTARIO = {
 COLUMNA_COMENTARIO = {
     "FAMILIA": "Grupo de origen: sede o od.",
     "COD_FUENTE": "Libro de origen: CMIN, AMAZONAS, LA LIBERTAD, etc.",
+    "TX_OFICINA": "Sigla o nombre de oficina obtenido de FAMILIA y COD_FUENTE.",
+    "PK_OFICINA": "Código COR### de T_SEP_OFICINA. Vacío si el texto no cruza.",
     "COD_REUNION": "Código de la reunión en el libro de origen.",
     "SOL_REUNION": "Quien solicita la reunión.",
     "FEC_REUNION": "Fecha de la reunión.",
@@ -154,6 +156,10 @@ def _mysql(root: Path, tablas: list[tuple[str, pd.DataFrame]]) -> None:
                     tipo = "VARCHAR(16)"
                 elif col == "COD_FUENTE":
                     tipo = "VARCHAR(80)"
+                elif col == "TX_OFICINA":
+                    tipo = "VARCHAR(240)"
+                elif col == "PK_OFICINA":
+                    tipo = "VARCHAR(20)"
                 else:
                     tipo = "TEXT"
                 defs.append(f"`{col}` {tipo} COMMENT {_sql_texto(_comentario(col))}")
@@ -206,6 +212,10 @@ def _oracle(root: Path, tablas: list[tuple[str, pd.DataFrame]]) -> None:
                     tipo = "VARCHAR2(16)"
                 elif col == "COD_FUENTE":
                     tipo = "VARCHAR2(80)"
+                elif col == "TX_OFICINA":
+                    tipo = "VARCHAR2(240)"
+                elif col == "PK_OFICINA":
+                    tipo = "VARCHAR2(20)"
                 else:
                     tipo = "CLOB"
                 defs.append(f"{col} {tipo}")

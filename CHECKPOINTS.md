@@ -3,7 +3,7 @@
 Criterios para marcar features `done` en [`feature_list.json`](feature_list.json).  
 Verificación de humo: [`./init.sh`](init.sh) (`HARNESS OK`).  
 Verificación de datos: [`scripts/control_datos.py`](scripts/control_datos.py). No resetea H2.  
-`HARNESS OK` no cierra las fases 2 ni 3.
+`HARNESS OK` no cierra las fases 2, 3 ni 4.
 
 ---
 
@@ -48,6 +48,16 @@ Ver skill `hop-python-etl` e [`inputs.example.yaml`](.agents/skills/hop-python-e
 - [ ] Oracle y MySQL tienen el mismo número de filas en `DW_ACU_REUNIONES`, `DW_ACU_BASE_ACUERDOS` y `DW_ACU_DATOS`.
 
 Contrato: [`python/CONTRATO.md`](python/CONTRATO.md).
+
+---
+
+## Fase 4 — PK_OFICINA {#fase-4}
+
+- [ ] `CMIN` queda `COR064`, `AMAZONAS` queda `COR047` y `CHIMBOTE` queda `COR033` en `DW_ACU_REUNIONES`, `DW_ACU_BASE_ACUERDOS` y `DW_ACU_DATOS`.
+- [ ] Oracle y MySQL tienen el mismo conteo de `PK_OFICINA` no nulo en esas tres tablas.
+- [ ] Un texto sin cruce deja `PK_OFICINA` vacío, se imprime y no corta la carga.
+
+`HARNESS OK` no cierra esta fase.
 
 ---
 

@@ -6,6 +6,7 @@
 python/main.py
   → io/leer_h2.py     (H2 → DataFrames)
   → logica/compromisos.py
+  → io/oficinas.py         (TX_OFICINA y PK_OFICINA)
   → io/escribir_excel.py   (output/resultado.xlsx, 4 hojas)
   → io/cargar_acu.py      (Oracle y MySQL: DW_ACU_*)
 ```
@@ -33,6 +34,8 @@ Claves de `LECTURAS` en `python/io/leer_h2.py`:
 | `RESULTADO` | Conteos | Filas por tabla, familia y código |
 
 Apilado: igualdad del encabezado después de recortar, colapsar espacios, pasar a minúsculas y quitar tildes. Un nombre distinto queda en su propio campo. `FAMILIA` y `COD_FUENTE` van al inicio. Orden: `FAMILIA`, `COD_FUENTE`.
+
+`io/oficinas.py` agrega `TX_OFICINA` y `PK_OFICINA` (`VARCHAR(20)` / `VARCHAR2(20)`) después de `COD_FUENTE`. El cruce está en `docs/inputs/oficinas.yaml` y en `T_SEP_OFICINA`. Sin coincidencia, `PK_OFICINA` queda vacío y la carga sigue.
 
 ## Reglas
 

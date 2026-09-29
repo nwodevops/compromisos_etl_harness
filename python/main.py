@@ -73,6 +73,11 @@ def main() -> int:
     if SALIDA_DF not in salidas:
         raise SystemExit(f"La lógica no dejó '{SALIDA_DF}'. Ver python/CONTRATO.md")
 
+    ofi = HERE / "io" / "oficinas.py"
+    if ofi.is_file():
+        resolver = _load("oficinas", ofi)
+        salidas = resolver.aplicar(root, salidas)
+
     for nombre, df in salidas.items():
         print(f"Salida {nombre}: {len(df)} filas x {len(df.columns)} columnas")
 

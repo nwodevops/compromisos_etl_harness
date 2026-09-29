@@ -1,0 +1,146 @@
+# Cruce FAMILIA + COD_FUENTE → TX_OFICINA → PK_OFICINA (COR###).
+# Las siglas no están en T_SEP_OFICINA (TX_ABREVIATURA vacía).
+# COR049 queda ODES-MOQ. COR071 solo tiene sigla.
+
+fuentes:
+  - {familia: sede, cod: CMIN, tx_oficina: CMIN}
+  - {familia: sede, cod: CHID, tx_oficina: CHID}
+  - {familia: sede, cod: CELE, tx_oficina: CELE}
+  - {familia: sede, cod: CIND, tx_oficina: CIND}
+  - {familia: sede, cod: CPES, tx_oficina: CPES}
+  - {familia: sede, cod: CAGR, tx_oficina: CAGR}
+  - {familia: sede, cod: CRES, tx_oficina: CRES}
+  - {familia: sede, cod: UFED, tx_oficina: UFED}
+  - {familia: sede, cod: UFSAVC, tx_oficina: UFSAVC}
+  - {familia: od, cod: AMAZONAS, tx_oficina: ODES-AMA}
+  - {familia: od, cod: ANCASH, tx_oficina: ODES-ANC}
+  - {familia: od, cod: APURIMAC, tx_oficina: ODES-APU}
+  - {familia: od, cod: AREQUIPA, tx_oficina: ODES-ARE}
+  - {familia: od, cod: AYACUCHO, tx_oficina: ODES-AYA}
+  - {familia: od, cod: CAJAMARCA, tx_oficina: ODES-CAJ}
+  - {familia: od, cod: CUSCO, tx_oficina: ODES-CUS}
+  - {familia: od, cod: HUANCAVELICA, tx_oficina: ODES-HUV}
+  - {familia: od, cod: HUANUCO, tx_oficina: ODES-HUC}
+  - {familia: od, cod: ICA, tx_oficina: ODES-ICA}
+  - {familia: od, cod: JUNIN, tx_oficina: ODES-JUN}
+  - {familia: od, cod: "LA LIBERTAD", tx_oficina: ODES-LAL}
+  - {familia: od, cod: LAMBAYEQUE, tx_oficina: ODES-LAM}
+  - {familia: od, cod: LORETO, tx_oficina: ODES-LOR}
+  - {familia: od, cod: "MADRE DE DIOS", tx_oficina: ODES-MDD}
+  - {familia: od, cod: MOQUEGUA, tx_oficina: ODES-MOQ}
+  - {familia: od, cod: PASCO, tx_oficina: ODES-PAS}
+  - {familia: od, cod: PIURA, tx_oficina: ODES-PIU}
+  - {familia: od, cod: PUNO, tx_oficina: ODES-PUN}
+  - {familia: od, cod: "SAN MARTIN", tx_oficina: ODES-SAM}
+  - {familia: od, cod: TACNA, tx_oficina: ODES-TAC}
+  - {familia: od, cod: TUMBES, tx_oficina: ODES-TUM}
+  - {familia: od, cod: UCAYALI, tx_oficina: ODES-UCA}
+  - {familia: od, cod: VRAEM, tx_oficina: ODES-VRA}
+  - {familia: od, cod: CHIMBOTE, tx_oficina: ODES-ANC-OEN-CHI}
+  - {familia: od, cod: CORACORA, tx_oficina: ODES-ICA-OEN-COR}
+  - {familia: od, cod: COTABAMBAS, tx_oficina: ODES-APU-OEN-COT}
+  - {familia: od, cod: TALARA, tx_oficina: ODES-PIU-OEN-TAL}
+  - {familia: od, cod: ESPINAR, tx_oficina: ODES-CUS-OEN-ESP}
+  - {familia: od, cod: "LA CONVENCION", tx_oficina: ODES-CUS-OEI-LAC}
+  - {familia: od, cod: PICHANAKI, tx_oficina: ODES-JUN-OEN-PIC}
+
+siglas:
+  COR062: CELE
+  COR064: CMIN
+  COR063: CHID
+  COR065: CAGR
+  COR095: UFED
+  COR067: CPES
+  COR066: CIND
+  COR069: CRES
+  COR070: "COORDINACIÓN DE SUPERVISIÓN AMBIENTAL EN TRANSPORTE"
+  COR071: UFSAVC
+  COR068: CCAM
+  COR047: ODES-AMA
+  COR042: ODES-ANC
+  COR034: ODES-APU
+  COR039: ODES-ARE
+  COR024: ODES-AYA
+  COR031: ODES-CAJ
+  COR040: ODES-CUS
+  COR037: ODES-HUC
+  COR030: ODES-HUV
+  COR035: ODES-ICA
+  COR032: ODES-JUN
+  COR013: ODES-LAL
+  COR036: ODES-LAM
+  COR048: ODES-LOR
+  COR045: ODES-MDD
+  COR049: ODES-MOQ
+  COR028: ODES-PAS
+  COR025: ODES-PIU
+  COR023: ODES-PUN
+  COR050: ODES-SAM
+  COR051: ODES-TAC
+  COR041: ODES-TUM
+  COR043: ODES-UCA
+  COR038: ODES-VRA
+  COR033: ODES-ANC-OEN-CHI
+  COR087: ODES-ICA-OEN-COR
+  COR055: ODES-APU-OEN-COT
+  COR091: ODES-PIU-OEN-TAL
+  COR044: ODES-CUS-OEN-ESP
+  COR072: ODES-CUS-OEI-LAC
+  COR046: ODES-JUN-OEN-PIC
+
+reglas:
+  COR062: ["COORDINACIÓN DE SUPERVISIÓN AMBIENTAL EN ELECTRICIDAD"]
+  COR064: ["COORDINACIÓN DE SUPERVISIÓN AMBIENTAL EN MINERÍA"]
+  COR063: ["COORDINACIÓN DE SUPERVISIÓN AMBIENTAL EN HIDROCARBUROS"]
+  COR065: ["COORDINACIÓN DE SUPERVISIÓN AMBIENTAL EN AGRICULTURA"]
+  COR095: ["UNIDAD FUNCIONAL SUPERVISIÓN AMBIENTAL EN EDUCACIÓN"]
+  COR067: ["COORDINACIÓN DE SUPERVISIÓN AMBIENTAL EN PESCA"]
+  COR066: ["COORDINACIÓN DE SUPERVISIÓN AMBIENTAL EN INDUSTRIA"]
+  COR069: ["COORDINACIÓN DE SUPERVISIÓN AMBIENTAL EN RESIDUOS SOLIDOS"]
+  COR070: ["COORDINACIÓN DE SUPERVISIÓN AMBIENTAL EN TRANSPORTE"]
+  COR068: ["COORDINACIÓN DE SEGUIMIENTO Y VERIFICACIÓN A LAS CONSULTORAS AMBIENTALES"]
+  COR047: ["OFICINA DESCONCENTRADA DE AMAZONAS"]
+  COR042: ["OFICINA DESCONCENTRADA DE ANCASH"]
+  COR034: ["OFICINA DESCONCENTRADA DE APURIMAC"]
+  COR039: ["OFICINA DESCONCENTRADA DE AREQUIPA"]
+  COR024: ["OFICINA DESCONCENTRADA DE AYACUCHO"]
+  COR031: ["OFICINA DESCONCENTRADA DE CAJAMARCA"]
+  COR040: ["OFICINA DESCONCENTRADA DE CUSCO"]
+  COR037:
+    - "OFICINA DESCONCENTRADA DE HUANUCO"
+    - "OFICINA DESCONCENTRADA DE HUÁNUCO"
+  COR030: ["OFICINA DESCONCENTRADA DE HUANCAVELICA"]
+  COR035: ["OFICINA DESCONCENTRADA DE ICA"]
+  COR032:
+    - "OFICINA DESCONCENTRADA DE JUNIN"
+    - "OFICINA DESCONCENTRADA DE JUNÍN"
+  COR013: ["OFICINA DESCONCENTRADA DE LA LIBERTAD"]
+  COR036: ["OFICINA DESCONCENTRADA DE LAMBAYEQUE"]
+  COR048: ["OFICINA DESCONCENTRADA DE LORETO"]
+  COR045: ["OFICINA DESCONCENTRADA DE MADRE DE DIOS"]
+  COR049: ["OFICINA DESCONCENTRADA DE MOQUEGUA"]
+  COR028: ["OFICINA DESCONCENTRADA DE PASCO"]
+  COR025: ["OFICINA DESCONCENTRADA DE PIURA"]
+  COR023: ["OFICINA DESCONCENTRADA DE PUNO"]
+  COR050:
+    - "OFICINA DESCONCENTRADA DE SAN MARTIN"
+    - "OFICINA DESCONCENTRADA DE SAN MARTÍN"
+  COR051: ["OFICINA DESCONCENTRADA DE TACNA"]
+  COR041: ["OFICINA DESCONCENTRADA DE TUMBES"]
+  COR043: ["OFICINA DESCONCENTRADA DE UCAYALI"]
+  COR038: ["OFICINA DESCONCENTRADA DE VRAEM"]
+  COR033: ["OFICINA DE ENLACE CHIMBOTE"]
+  COR087: ["OFICINA DE ENLACE CORACORA"]
+  COR055: ["OFICINA DE ENLACE COTABAMBAS"]
+  COR091: ["OFICINA DE ENLACE DE TALARA"]
+  COR044: ["OFICINA DE ENLACE ESPINAR"]
+  COR072:
+    - "OFICINA DE ENLACE LA CONVENCIÓN"
+    - "OFICINA DE ENLACE LA CONVENCION"
+  COR046: ["OFICINA DE ENLACE PICHANAKI"]
+1. init.sh es solo humo. Antes del reset, cuenta las filas de PUBLIC.STG_*. Si hay filas y INIT_FORCE no es 1, falla y no ejecutes DROP ALL OBJECTS. El mensaje debe apuntar a scripts/control_datos.py. INIT_FORCE=1 ./init.sh sigue siendo el reset voluntario. HARNESS OK no cierra las fases de fuentes ni de lógica.
+2. Crea scripts/control_datos.py. No resetea H2 y no escribe en las bases. Compara el conteo de las tablas de salida de este ETL entre los dos destinos que ya publique (Oracle y MySQL, o el que exista). Exige las filas sentinela reales de este proyecto: la primera fila de datos que el staging no debe perder. Si este repo no tiene catálogo de fuentes, el script avisa y termina en 0. Si los conteos no coinciden o falta una sentinela, termina en 1. Si una columna es CLOB, no la compares con =; usa el equivalente del motor.
+3. CHECKPOINTS.md y docs/verification.md separan humo y datos. El humo es ./init.sh. Los datos son .venv/bin/python scripts/control_datos.py y deben terminar en CONTROL OK. Documenta las sentinelas y las tablas de ESTE etl, no copies DW_ACU_* ni CMIN/REU001 si aquí no existen.
+4. En python/main.py, la publicación al destino solo corre si el módulo de carga existe. Si no está, el arquetipo igual escribe el Excel y termina.
+5. Crea scripts/nuevo_etl.sh DEST --input excel|oracle|sheets. Copia una lista blanca del cascarón, no el repo entero. No copies la lógica de este ETL, secretos, client_secret, credenciales, outputs, logs ni project-config.json. Los dos entornos del destino salen de placeholders. El feature_list del destino queda en pending y el proyecto se llama como la carpeta. El workflow copiado no debe invocar el stage de este ETL: deja un aviso para cablear el pl_stage en la fase 2. Crea el venv (si ensurepip falla: python3 -m venv --without-pip y get-pip). Avisa que el H2 es mem:csep en el puerto 9092 y que no se debe correr el init.sh nuevo mientras otro ETL use esa base.
+Actualiza README.md y ESTRUCTURA.md con el uso ./scripts/nuevo_etl.sh /ruta/mi_etl --input excel|oracle|sheets. No agregues una fase nueva a feature_list.json: esto es el harness, no un entregable de datos. No hagas commit.
