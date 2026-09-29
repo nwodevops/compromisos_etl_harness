@@ -92,10 +92,13 @@ def main() -> int:
     else:
         escribir.escribir_excel(salidas[SALIDA_DF], root)
 
-    cargar = _load("cargar_acu", HERE / "io" / "cargar_acu.py")
-    cargar.publicar(root, hojas)
-
-    print("Listo (H2 -> logica -> Excel + DW_ACU_*).")
+    acu = HERE / "io" / "cargar_acu.py"
+    if acu.is_file():
+        cargar = _load("cargar_acu", acu)
+        cargar.publicar(root, hojas)
+        print("Listo (H2 -> logica -> Excel + DW_ACU_*).")
+    else:
+        print("Listo (H2 -> logica -> Excel).")
     return 0
 
 

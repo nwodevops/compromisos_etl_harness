@@ -35,13 +35,45 @@ step "Prerrequisitos"
 command -v java >/dev/null 2>&1 || fail "java no está en PATH"
 [ -f h2/lib/h2-2.4.240.jar ] || fail "jar H2 no encontrado"
 if [ ! -x .venv/bin/python ]; then
-  fail "venv ausente o roto. Desde el repo padre: ./scripts/nuevo_etl.sh lo crea. A mano: python3 -m venv .venv && .venv/bin/python -m pip install -r python/requirements.txt"
+  fail "venv ausente o roto. ./scripts/nuevo_etl.sh lo crea en un proyecto nuevo. A mano: python3 -m venv .venv && .venv/bin/python -m pip install -r python/requirements.txt"
 fi
 "$PY" -c "import yaml, pandas, jaydebeapi" 2>/dev/null \
   || fail "el .venv no tiene dependencias (¿venv sin pip?). .venv/bin/python -m pip install -r python/requirements.txt"
 if [ ! -f project-config.json ]; then
   step "Generando project-config.json (switch-env local)"
   ./switch-env.sh local
+fi
+
+step "Carga STG existente"
+STG_N="$("$PY" - <<'PY'
+import sys
+sys.path.insert(0, "python")
+try:
+    from config import load_vars, project_root
+    from h2_conn import connect_h2
+    root = project_root()
+    conn = connect_h2(root, load_vars(root))
+except Exception:
+    print(0)
+    raise SystemExit(0)
+total = 0
+try:
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES "
+        "WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_NAME LIKE 'STG_%'"
+    )
+    tablas = [row[0] for row in cur.fetchall()]
+    for tabla in tablas:
+        cur.execute(f'SELECT COUNT(*) FROM PUBLIC."{tabla}"')
+        total += int(cur.fetchone()[0])
+finally:
+    conn.close()
+print(total)
+PY
+)"
+if [ "${INIT_FORCE:-}" != "1" ] && [ "${STG_N:-0}" -gt 0 ]; then
+  fail "H2 tiene ${STG_N} filas STG. No se resetea. Humo: INIT_FORCE=1 ./init.sh. Datos: $PY scripts/control_datos.py"
 fi
 
 step "Reset H2 + DDL"

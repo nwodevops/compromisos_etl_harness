@@ -33,5 +33,5 @@ mi_etl/
 └── output/          (generado)
 ```
 
-Nuevo proyecto: `./scripts/nuevo_etl.sh /ruta/mi_etl`  
-Regenerar cascarón: `./scripts/sync_archetype.sh`
+Nuevo proyecto: `./scripts/nuevo_etl.sh /ruta/mi_etl --input excel|oracle|sheets`  
+El generador no copia acuerdos, secretos ni `python/stage/`. H2 sigue siendo `mem:csep`: no corras `init.sh` del proyecto nuevo mientras este ETL tenga la carga en memoria.

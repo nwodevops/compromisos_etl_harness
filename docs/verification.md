@@ -7,7 +7,16 @@ chmod +x init.sh
 ./init.sh   # HARNESS OK
 ```
 
-Comprueba: H2, `create_stg.py`, `main.py`, salida `RESULTADO`, sin `${VAR}` literal.
+Comprueba el humo: H2, `create_stg.py`, `main.py`, salida `RESULTADO`, sin `${VAR}` literal.
+Si H2 ya tiene filas `STG_*`, `./init.sh` no resetea. Para vaciar: `INIT_FORCE=1 ./init.sh`.
+
+Datos, sin reset:
+
+```bash
+.venv/bin/python scripts/control_datos.py   # CONTROL OK
+```
+
+Comprueba que Oracle y MySQL tengan las mismas filas en `DW_ACU_*` y que existan `CMIN`/`REU001` y `AMAZONAS`/`REU_AMA001`. Los libros en 403 se listan y no cuentan como éxito. `HARNESS OK` no cierra las fases 2 ni 3.
 
 ## Manual Hop
 

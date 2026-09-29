@@ -2,27 +2,22 @@
 
 Cascarón **mínimo** para un ETL nuevo. Sin fuentes ni lógica de negocio: demo `DEMO_TABLA_EJEMPLO` → Excel.
 
-Desde el repo padre:
+Otro ETL, con entrada Excel, Oracle o una hoja de Sheets:
 
 ```bash
-./scripts/nuevo_etl.sh ~/workspace/mi_etl
+./scripts/nuevo_etl.sh ~/workspace/mi_etl --input excel
+./scripts/nuevo_etl.sh ~/workspace/mi_etl --input oracle
+./scripts/nuevo_etl.sh ~/workspace/mi_etl --input sheets
 cd ~/workspace/mi_etl
-```
-
-O regenerar y copiar a mano:
-
-```bash
-./scripts/sync_archetype.sh
-cp -r archetype/ ~/workspace/mi_etl/
 ```
 
 ## Bootstrap
 
-`nuevo_etl.sh` crea el `.venv` con pip. Si copiás `archetype/` a mano en Ubuntu sin `python3-venv`:
+`nuevo_etl.sh` crea el `.venv` con pip. Si copiás el árbol a mano en Ubuntu sin `python3-venv`:
 
 ```bash
-# usar python3-venv (ensurepip) O el helper del repo padre:
-#   ./scripts/nuevo_etl.sh ~/workspace/mi_etl
+# usar python3-venv (ensurepip) O:
+#   ./scripts/nuevo_etl.sh ~/workspace/mi_etl --input excel
 # A mano en Ubuntu sin ensurepip:
 python3 -m venv --without-pip .venv
 # después: copiar pip del .venv del repo multa, o get-pip.py, y:
