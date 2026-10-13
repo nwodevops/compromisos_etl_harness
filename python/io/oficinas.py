@@ -1,8 +1,8 @@
 """TX_OFICINA y PK_OFICINA a partir de FAMILIA + COD_FUENTE.
 
-Lee docs/inputs/oficinas.yaml y T_SEP_OFICINA del MySQL de entrada
-(docs/credenciales/local.txt, bloque INPUT MySQL). No usa el DW local.
-Un texto sin cruce deja PK_OFICINA vacío y sigue.
+Lee docs/inputs/oficinas.yaml y T_SEP_OFICINA del MySQL de entrada.
+Linux usa docs/credenciales/local.txt; Windows usa remote.txt.
+No usa el DW. Un texto sin cruce deja PK_OFICINA vacío y sigue.
 """
 
 from __future__ import annotations
@@ -34,9 +34,13 @@ def _norm(texto) -> str:
 
 
 def _credencial_input(root: Path) -> dict[str, str]:
-    path = root / "docs" / "credenciales" / "local.txt"
+    # Linux = local. Windows = remote. El 209.45.104.78 no responde desde la red de Windows.
+    nombre = "remote.txt" if sys.platform == "win32" else "local.txt"
+    path = root / "docs" / "credenciales" / nombre
     if not path.is_file():
-        raise FileNotFoundError(f"No se encuentra {path}")
+        raise FileNotFoundError(
+            f"No se encuentra {path}. Esa carpeta no va en git; cópiala en esta máquina."
+        )
     campos: dict[str, str] = {}
     dentro = False
     for line in path.read_text(encoding="utf-8").splitlines():

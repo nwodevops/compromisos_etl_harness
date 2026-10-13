@@ -2,7 +2,7 @@
 
 ETL **Apache Hop + H2 in-memory + Python**. Arquitectura: [`docs/arquitectura.md`](docs/arquitectura.md).
 
-**Verificación:** [`./init.sh`](init.sh) debe terminar en **`HARNESS OK`**. Criterios: [`CHECKPOINTS.md`](CHECKPOINTS.md).
+**Verificación:** `./init.sh` (Linux) o `init.bat remote` (Windows) debe terminar en **`HARNESS OK`**. Criterios: [`CHECKPOINTS.md`](CHECKPOINTS.md).
 
 ## Harness
 
@@ -14,13 +14,16 @@ ETL **Apache Hop + H2 in-memory + Python**. Arquitectura: [`docs/arquitectura.md
 | [`docs/harness/workflow.md`](docs/harness/workflow.md) | Roles líder / implementador / revisor |
 | [`docs/harness/platform.md`](docs/harness/platform.md) | Hop, H2, variables |
 
-## Skill
+## Skills
 
-- [`.agents/skills/hop-python-etl/SKILL.md`](.agents/skills/hop-python-etl/SKILL.md)
+- [`.agents/skills/hop-python-etl/SKILL.md`](.agents/skills/hop-python-etl/SKILL.md) — capas Hop / H2 / Python
+- [`.agents/skills/linux-windows-parity/SKILL.md`](.agents/skills/linux-windows-parity/SKILL.md) — el cambio de Linux se espeja en `init.bat`, `wf_main_windows.hwf` y `run_wf_main.bat`
+- [`.agents/skills/etl-run-logs/SKILL.md`](.agents/skills/etl-run-logs/SKILL.md) — cada corrida deja bitácora en `logs/`
+- [`.agents/skills/release-etl/SKILL.md`](.agents/skills/release-etl/SKILL.md) — corta la rama `release` solo con el ETL
 
 ## Inicio rápido
 
-**Linux**
+### Linux (desarrollo, entorno `local`)
 
 ```bash
 ./switch-env.sh local
@@ -28,25 +31,29 @@ ETL **Apache Hop + H2 in-memory + Python**. Arquitectura: [`docs/arquitectura.md
 ~/apps/hop/hop-gui.sh   # → wf_main.hwf
 ```
 
-**Windows** (misma carpeta que `etl_informes_harness`, mismo `hop-run.bat`)
+### Windows (este equipo, entorno `remote`)
 
-```powershell
-.\switch-env.ps1 remote
-.\init.bat                         # consola; default remote
-# Programador de tareas → run_wf_main.bat
-# Hop GUI → wf_main_windows.hwf
+```bat
+powershell -ExecutionPolicy Bypass -File switch-env.ps1 remote
+init.bat remote
+REM Programador de tareas → run_wf_main.bat
+REM Hop GUI → workflows\wf_main_windows.hwf
 ```
 
-El proyecto Hop es `compromisos_etl_harness`. H2 se comparte con informes: puerto `9092`, base `mem:csep`. No correr las dos a la vez: el reset hace `DROP ALL OBJECTS`.
+## Entornos
+
+Host, servicio y esquema no van en este archivo. Viven en `environments/local.json` y `environments/remote.json` (placeholders `<...>`). El esquema destino es `DB_ORA_DW_SCHEMA`. Credenciales reales solo en `docs/credenciales/*.txt` (gitignored), sobrepuestas por `switch-env.sh` / `switch-env.ps1`.
 
 ## Reglas críticas
 
-1. **Un solo `.py`** en `logica/` (reemplazar `demo.py` al escribir la lógica real).
-2. **Sin secretos** en git (`project-config.json` es generado).
-3. **Sin `${VAR}` literal** en logs Hop = variable mal definida.
-4. `logica/` no abre conexiones. I/O en `python/io/`.
-5. **Linux = entorno `local`. Windows = entorno `remote`.** En esta máquina: `./switch-env.sh local` y `hop-run.sh`. En Windows: `.\switch-env.ps1 remote` y `hop-run.bat`. `-r local` de Hop es el motor de ejecución, no el entorno de datos.
+1. **Prioridad:** Apache Hop mueve las filas. Un mapeo 1:1 no pasa por `logica/`. Un tema complejo (joins, calidad, varias fuentes, dimensional, indicadores) sí usa Python en `logica/`.
+2. **Un solo `.py`** en `logica/` (el cascarón trae `demo.py`).
+3. **Sin secretos** en git (`project-config.json` es generado).
+4. **Sin `${VAR}` literal** en logs Hop = variable mal definida.
+5. `logica/` no abre conexiones. I/O en `python/io/`.
+6. **No solapar corridas**: `mem:csep`:9092 es compartido con los repos hermanos y todos hacen `DROP ALL OBJECTS`.
+7. **Corrida en `logs/`**: `logs/init_YYYYMMDD.log` y `logs/wf_main_YYYYMMDD.log`. stdout o un temporal que se borra no cuentan. Skill `etl-run-logs`.
 
 ## Nuevo proyecto
 
-Este repo es un cascarón. Fuentes → `inputs.yaml`. Lecturas → `python/io/leer_h2.py`. Transformación → `logica/<tu>.py`. Destino demo → Excel.
+Este repo es un cascarón. Fuentes → `inputs.yaml`. Filas → pipelines Hop. `logica/<tu>.py` es obligatorio cuando el tema es complejo. Destino demo del cascarón → Excel.

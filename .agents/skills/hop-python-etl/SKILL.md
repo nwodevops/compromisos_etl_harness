@@ -2,6 +2,7 @@
 name: hop-python-etl
 description: >-
   Arquetipo Apache Hop + H2 in-memory STG_* + Python post-staging.
+  Prioridad: Hop mueve las filas. Tema complejo: Python en logica/ es obligatorio.
   inputs.yaml, create_stg.py, wf_create_stg/wf_main, logica/ aislada,
   project-config.json. Usar al clonar el cascarón, añadir fuentes STG,
   cablear workflows o depurar Hop/H2/Python.
@@ -31,12 +32,17 @@ Fuentes (Excel / Sheets / Oracle / lo que declare inputs.yaml)
 
 **Contrato:** `python/CONTRATO.md`. **Staging:** [reference.md](reference.md).
 
-## Cuándo Hop solo vs Python
+## Prioridad: Hop, después Python
 
-- **Hop solo:** 1 fuente → 1 destino, mapeo 1:1.
-- **Python:** homologación, calidad, joins, dimensional, indicadores.
+Hop mueve las filas. Python entra cuando el problema ya no es un copia 1:1.
 
-Un solo `.py` en `logica/` (auto-descubierto por `python/main.py`). Entrada = claves de `LECTURAS` en `python/io/leer_h2.py`. Salida = DataFrame `RESULTADO`.
+| Caso | Quién |
+|---|---|
+| Extract, truncate, insert. Sheets, Excel, Oracle, H2. Mapeo 1:1 (`pl_stage_*` y, si el destino es Oracle, `pl_ora_*`). | Hop |
+| DDL de landing (`create_stg.py`, `create_ora.py`). | Python, sin filas |
+| Tema complejo: homologación, calidad, joins, varias fuentes, dimensional, indicadores, reglas que un pipeline no debe resolver. | Python obligatorio, en `logica/` |
+
+Un mapeo 1:1 no pasa por `logica/` ni por `python/main.py`. En un tema complejo, un solo `.py` en `logica/` (auto-descubierto por `python/main.py`). Entrada = claves de `LECTURAS` en `python/io/leer_h2.py`. Salida = DataFrame `RESULTADO`. Hop sigue siendo quien dejó las `STG_*` llenas. `logica/` no abre conexiones.
 
 ## Workflows
 
@@ -57,8 +63,8 @@ Smoke sin Hop:
 1. Entrada en `inputs.yaml` ([inputs.example.yaml](inputs.example.yaml)).
 2. Play `wf_create_stg` → crear `pipelines/pl_stage_*.hpl`.
 3. Cablear en `wf_main.hwf` **después** de Python create STG.
-4. Clave en `python/io/leer_h2.py` → `LECTURAS`.
-5. Lógica en `logica/` (no conexiones). Borrar `demo.py` al pasar a lógica real.
+4. Mapeo 1:1: pipeline Hop hasta el destino. No añadas `logica/`.
+5. Tema complejo: clave en `python/io/leer_h2.py` → `LECTURAS`, un `.py` en `logica/` (sin conexiones). Borrar `demo.py`. Hop ya cargó las `STG_*`.
 6. Actualizar `python/CONTRATO.md` y `AGENTS.md`.
 
 ## Variables y conexiones
@@ -71,6 +77,10 @@ Fuente única: `project-config.json` → `config.variables`. Entorno: `./switch-
 `${VAR}` literal en log = variable no definida o proyecto Hop equivocado.
 
 **Secretos:** no commitear passwords reales en `project-config.json` / `environments/`.
+
+**Dos SO:** la corrida Linux (`init.sh`, `wf_main.hwf`) y la Windows (`init.bat`, `wf_main_windows.hwf`, `run_wf_main.bat`) van juntas. El `.bat` del Programador de tareas se copia de la plantilla en [`linux-windows-parity`](../linux-windows-parity/SKILL.md).
+
+**Logs:** la corrida se guarda en `logs/`. Skill [`etl-run-logs`](../etl-run-logs/SKILL.md).
 
 ## Gotchas
 
